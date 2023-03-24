@@ -8,9 +8,20 @@ A small package for reading emsg boxes from a mp4 segment.
 
 `yarn add @eyevinn/segment-emsg-parser`
 
-## Contributing
+```typescript
+import { extractEmsgArrayFromSegment } from "@Eyevinn/segment-emsg-parser";
 
-Contributions to improve compatibility with or add support for different engines, tracking solutions, and browsers are welcome.
+const response = await fetch("segment.m4s");
+const buffer = await response.arrayBuffer();
+
+const emsgArray = extractEmsgArrayFromSegment(buffer);
+```
+
+## Develop
+
+Install Node, npm, and yarn v3. Clone the repo and run `yarn` to install dependencies.
+
+`yarn dev` will start a dev server where you can test parsing of segments.
 
 ### Git Ways of Working
 
