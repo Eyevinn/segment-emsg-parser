@@ -28,15 +28,57 @@
     .box {
       margin: 0 0 1rem 0;
     }
+
+    #data {
+      padding: 1rem;
+      background: #101010;
+      border-radius: 1rem;
+    }
+
+    input,
+    button {
+      border: 0;
+      padding: 0.5rem;
+      background: rgba(255, 198, 109, 1);
+    }
+
+    button {
+      border-radius: 0.5rem;
+    }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="box">
-
+      <input type="text" id="urlInput" value="./emsg_v1_id3.m4s" />
+      <button type="button" name="Fetch" id="fetchSegment">
+        Fetch Segment
+      </button>
+    </div>
+    <div class="box">Result</div>
+    <div class="box">
+      <pre id="data"></pre>
     </div>
   </div>
 
   <script type="module">
+    import { extractEmsgArrayFromSegment } from "./main.mjs";
+
+    const dataEl = document.getElementById("data");
+    const button = document.getElementById("fetchSegment");
+
+    const onClick = () =>
+      fetch(document.getElementById("urlInput").value)
+        .then((r) => r.arrayBuffer())
+        .then((buffer) => {
+          console.log("Got response, extracting...");
+          const data = extractEmsgArrayFromSegment(buffer);
+          console.log("JSON.stringifying...");
+          dataEl.textContent = JSON.stringify(data, null, 2);
+          console.log("Result shown on screen");
+        })
+        .catch(console.error);
+
+    button.onclick = onClick;
   </script>
 </body>
