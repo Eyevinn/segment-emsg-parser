@@ -29,10 +29,15 @@
       margin: 0 0 1rem 0;
     }
 
-    #data {
+    #data,
+    #text {
       padding: 1rem;
       background: #101010;
       border-radius: 1rem;
+    }
+
+    #text {
+      white-space: normal;
     }
 
     input,
@@ -57,14 +62,21 @@
     </div>
     <div class="box">Result</div>
     <div class="box">
+      <div id="text"></div>
+    </div>
+    <div class="box">
       <pre id="data"></pre>
     </div>
   </div>
 
   <script type="module">
-    import { extractEmsgArrayFromSegment } from "./main.mjs";
+    import {
+      extractEmsgArrayFromSegment,
+      mapMessageDataToString,
+    } from "./main.mjs";
 
     const dataEl = document.getElementById("data");
+    const textEl = document.getElementById("text");
     const button = document.getElementById("fetchSegment");
 
     const onClick = () =>
@@ -73,8 +85,14 @@
         .then((buffer) => {
           console.log("Got response, extracting...");
           const data = extractEmsgArrayFromSegment(buffer);
+
+          const text = data.map((emsg) =>
+            mapMessageDataToString(Array.from(emsg.message_data))
+          );
+
           console.log("JSON.stringifying...");
           dataEl.textContent = JSON.stringify(data, null, 2);
+          textEl.textContent = `message_data as text: ${text}`;
           console.log("Result shown on screen");
         })
         .catch(console.error);

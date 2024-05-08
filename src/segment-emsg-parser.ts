@@ -22,3 +22,9 @@ export const extractEmsgArrayFromSegment = (
       version: emsg.version,
     })) as Array<EMSG>;
 };
+
+export const mapMessageDataToString = (messageData: Uint8Array) =>
+  Array.from(messageData)
+    .filter((code) => code > 31 && code < 127)
+    .map((code) => String.fromCharCode(code))
+    .join("");
