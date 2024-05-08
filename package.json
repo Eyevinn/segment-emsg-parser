@@ -1,6 +1,6 @@
 {
   "name": "@eyevinn/segment-emsg-parser",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Segment EMSG Parser",
   "main": "build/sep.min.js",
