@@ -20,6 +20,7 @@
     "release": "semantic-release",
     "prepublishOnly": "yarn build"
   },
+  "files": ["build", "LICENSE", "package.json", "src", "CHANGELOG.md", "README.md"],
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
