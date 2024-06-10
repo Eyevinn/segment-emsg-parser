@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Eyevinn/segment-emsg-parser/compare/v1.1.0...v1.1.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* exclude bloat from npm package ([7afe6f1](https://github.com/Eyevinn/segment-emsg-parser/commit/7afe6f152cf659196526ef8b250c4fee0ef15224))
+
 # [1.1.0](https://github.com/Eyevinn/segment-emsg-parser/compare/v1.0.0...v1.1.0) (2024-05-08)
 
 
